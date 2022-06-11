@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   build:
@@ -57,3 +57,8 @@ jobs:
     - name: Test
       run: |
         ./install-prefix/bin/pymol -ckqy pymol-testing/testing.py --run all
+    
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: ./install-prefix/
